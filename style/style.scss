@@ -1,0 +1,233 @@
+$white: #ffffff;
+$very-light: #dcf8e3;
+
+$light-green: #92e6a7;
+$pale-green: #6ede8a;
+$green: #2dc653;
+$dark-green: #1a7431;
+$very-dark-green: #10451d;
+$border-radius: 0.8em;
+$border-radius-small: 0.5em;
+
+@mixin hover {
+  background: $very-dark-green;
+  color: $white;
+  @content;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Afacad Flux", Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: $very-light;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+header {
+  margin: 5em 0 2em;
+}
+#game-over {
+  display: flex;
+  flex-direction: column;
+  background: $dark-green;
+  width: 400px;
+  height: 200px;
+  z-index: 100;
+  position: fixed;
+  top: 100px;
+  border-radius: $border-radius;
+  color: $white;
+  font-size: 2.7em;
+  padding: 1em;
+  visibility: hidden;
+  a {
+    font-size: 0.5em;
+    margin-top: 2em;
+  }
+}
+
+h1 {
+  color: $very-dark-green;
+  font-weight: 800;
+  font-size: 3em;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  a,
+  button {
+    text-decoration: none;
+    color: $very-dark-green;
+    background: $white;
+    border-radius: $border-radius;
+    padding: 0.5em 2em;
+    margin: 0.25em;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 500;
+    border: none;
+    &:hover {
+      @include hover {
+      }
+    }
+  }
+  #levels-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 16em;
+    button {
+      padding: 0.5em 0;
+      width: 100%;
+      margin: 0.25em;
+    }
+  }
+  .active {
+    @include hover {
+    }
+  }
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #finish,
+  #next,
+  .go-home {
+    background: none;
+    border: 2px solid $very-dark-green;
+    padding: 0.2em 0.7em;
+    font-size: 1.2em;
+  }
+  .go-home {
+    margin: 0.8em;
+  }
+}
+
+.user-score {
+  display: flex;
+  justify-content: space-between;
+  width: 30em;
+  margin: 0 0 1.5em;
+  background: $white;
+  border-radius: $border-radius;
+  padding: 0.3em 0em;
+  font-size: 1.2em;
+  font-weight: 500;
+  .user-id {
+    background: $very-dark-green;
+    color: $white;
+    padding: 0.4em 0.6em;
+    margin: 0 0.6em;
+    border-radius: $border-radius-small;
+  }
+  .user-name {
+    padding: 0.5em;
+  }
+  .score {
+    background: $very-light;
+    padding: 0.6em 0.6em;
+    margin: 0 0.6em;
+    border-radius: $border-radius-small;
+  }
+}
+#game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4em 0em 3em;
+  padding: 0;
+  #question-h span {
+    margin-right: 8em;
+  }
+  h1 {
+    font-size: 1.7em;
+    font-weight: 700;
+    display: inline-block;
+    span {
+      display: inline-block;
+      background: $white;
+      padding: 0 0.5em;
+      border-radius: $border-radius-small;
+    }
+  }
+}
+#game-main {
+  width: max(50%, 650px);
+  .question-options {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    h2 {
+      width: 100%;
+      background: $dark-green;
+      color: $white;
+      padding: 0.7em 0.5em;
+      margin: 0 0 0.6em;
+      border-radius: $border-radius;
+      font-weight: 400;
+    }
+    button {
+      margin: 0.25em 0;
+      padding: 0.2em 0.8em;
+      width: 100%;
+      border-radius: $border-radius-small;
+      text-align: left;
+    }
+  }
+  #finish-next button {
+    margin: 0.6em 0 0;
+    &:hover {
+      @include hover();
+    }
+  }
+  #finish {
+    margin: 0;
+  }
+}
+#users-records {
+  display: flex;
+  flex-direction: column;
+}
+
+#final-score {
+  background: $very-dark-green;
+  color: $white;
+  border-radius: $border-radius-small;
+  padding: 0.1em 0.3em;
+  margin: 0.4em 0 0.2em;
+}
+#main-end {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  input {
+    width: 100%;
+    padding: 0.6em 0.8em;
+    border-radius: $border-radius;
+    background: none;
+    font-size: 1.2em;
+    border: 2px solid $white;
+    margin: 0.5em 0 0.8em;
+    &:hover {
+      border: 2px solid $dark-green;
+      color: $dark-green;
+      font-weight: 600;
+    }
+  }
+  a {
+    width: 100%;
+    margin: 0.3em 0;
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>One Thousand Quizes</title>
+  </head>
+  <body>
+    <header id="game-header">
+      <h1 id="question-h">Question No: <span>x</span></h1>
+      <h1 id="score-board">Score: <span>x</span></h1>
+    </header>
+    <main id="game-main">
+      <section class="question-options">
+        <div id="game-over">
+          <p>GAME OVER</p>
+          <p id="game-over-info"></p>
+          <a href="./end.html">Scores</a>
+        </div>
+        <h2>Question?</h2>
+        <button id="answer-1" class="options">option1</button>
+        <button id="answer-2" class="options">option2</button>
+        <button id="answer-3" class="options">option3</button>
+        <button id="answer-4" class="options">option4</button>
+      </section>
+      <section id="finish-next">
+        <a id="finish" href="end.html">Finish</a>
+        <button id="next">Next</button>
+      </section>
+    </main>
+    <script src="./javascript/utils.js" type="module"></script>
+    <script src="./javascript/game.js" type="module"></script>
+  </body>
+</html>
