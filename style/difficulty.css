@@ -63,4 +63,28 @@ main div {
   font-size: 1.2em;
 }
 
-/*# sourceMappingURL=style.css.map */
+main {
+  justify-content: center;
+  align-items: center;
+}
+
+#levels-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 16em;
+}
+#levels-div button {
+  padding: 0.5em 0;
+  width: 350px;
+  margin: 0.25em;
+}
+
+.active {
+  background: #10451d;
+  color: #ffffff;
+}
+
+/*# sourceMappingURL=difficulty.css.map */

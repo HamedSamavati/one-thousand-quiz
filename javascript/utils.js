@@ -121,8 +121,17 @@ const finishHandler = () => {
   console.log(gameOver);
 };
 
-function relaodNextQuestion() {
+function showQuestion() {
   const questions = reloadFromLocalStorage("questions");
+  questionTag.innerHTML = questions[questionNumber - 1].question;
+  let correctAnswerBtnIndex = questions[questionNumber - 1].correctIndex;
+  saveToLocalStorage("correctAns", correctAnswerBtnIndex);
+  for (let index = 0; index < answerTags.length; index++) {
+    answerTags[index].innerHTML = questions[questionNumber - 1].answers[index];
+  }
+}
+
+function relaodNextQuestion() {
   resetAnswerBtns();
   if (questionNumber === 21) {
     finishHandler();
@@ -131,12 +140,7 @@ function relaodNextQuestion() {
   questionNumberTag.textContent = questionNumber;
   score = reloadFromLocalStorage("score");
   scoreTag.textContent = score;
-  questionTag.innerHTML = questions[questionNumber - 1].question;
-  let correctAnswerBtnIndex = questions[questionNumber - 1].correctIndex;
-  saveToLocalStorage("correctAns", correctAnswerBtnIndex);
-  for (let index = 0; index < answerTags.length; index++) {
-    answerTags[index].innerHTML = questions[questionNumber - 1].answers[index];
-  }
+  showQuestion();
   answerTags.forEach((answerTag) => {
     answerTag.addEventListener("click", chooseAnswerHandler);
   });

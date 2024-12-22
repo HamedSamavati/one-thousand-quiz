@@ -63,4 +63,12 @@ main div {
   font-size: 1.2em;
 }
 
-/*# sourceMappingURL=style.css.map */
+main {
+  align-items: center;
+}
+
+a {
+  width: 350px;
+}
+
+/*# sourceMappingURL=index.css.map */

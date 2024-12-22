@@ -63,4 +63,37 @@ main div {
   font-size: 1.2em;
 }
 
-/*# sourceMappingURL=style.css.map */
+#users-records {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-score {
+  display: flex;
+  justify-content: space-between;
+  width: 20em;
+  margin: 0 0 0.3em;
+  background: #ffffff;
+  border-radius: 0.8em;
+  padding: 0.3em 0em;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.user-score .user-id {
+  background: #10451d;
+  color: #ffffff;
+  padding: 0.4em 0.6em;
+  margin: 0 0.6em;
+  border-radius: 0.5em;
+}
+.user-score .user-name {
+  padding: 0.5em;
+}
+.user-score .score {
+  background: #dcf8e3;
+  padding: 0.6em 0.6em;
+  margin: 0 0.6em;
+  border-radius: 0.5em;
+}
+
+/*# sourceMappingURL=scores.css.map */
