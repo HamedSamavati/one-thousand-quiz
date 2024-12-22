@@ -1,5 +1,4 @@
 const quantity = 20;
-// const level = localStorage.getItem("difficulty");
 const level = reloadFromLocalStorage("difficulty");
 const apiUrl = `https://opentdb.com/api.php?amount=${quantity}&category=18&difficulty=${level}&type=multiple`;
 const nameInput = document.getElementById("name-input");
@@ -24,34 +23,12 @@ var score = 0;
 function chooseLevelHandler(event) {
   const targetText = event.target.textContent;
   levelBtns.forEach((levelBtn) => {
-    if (levelBtn.classList.contains("active") && levelBtn !== event.target) {
+    if (levelBtn.classList.contains("active") && levelBtn !== event.target)
       levelBtn.classList.toggle("active");
-    }
   });
   if (!event.target.classList.contains("active"))
     event.target.classList.toggle("active");
   saveToLocalStorage("difficulty", `${targetText.toLowerCase()}`);
-  reloadQuestions();
-}
-
-const chooseRandomBtn = () => {
-  const randomDigit = (Math.random() * 10) % 4;
-  return Math.floor(randomDigit);
-};
-
-async function getQuestions() {
-  try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const result = await response.json();
-    const question = await result.results;
-    return question;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
 }
 
 function saveToLocalStorage(key, data) {
@@ -73,9 +50,40 @@ function reloadFromLocalStorage(key) {
   }
 }
 
+async function getQuestions() {
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const result = await response.json();
+    const question = await result.results;
+    return question;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
+const formatQuestions = (questionData) => {
+  console.log(questionData);
+  let formated = questionData.map((item) => {
+    const questionObj = { question: item.question };
+    let answers = [...item.incorrect_answers];
+    const CorrectAnswerIndex = Math.floor(Math.random() * 4);
+    answers.splice(CorrectAnswerIndex, 0, item.correct_answer);
+    questionObj.answers = answers;
+    questionObj.correctIndex = CorrectAnswerIndex;
+    return questionObj;
+  });
+  console.log(formated);
+  return formated;
+};
+
 async function reloadQuestions() {
   try {
-    const questions = await getQuestions();
+    let questions = await getQuestions();
+    questions = formatQuestions(questions);
     saveToLocalStorage("questions", questions);
   } catch (error) {
     console.error("Failed to fetch data from the server: ", error);
@@ -91,18 +99,16 @@ function chooseAnswerHandler(event) {
     scoreTag.textContent = score;
   }
   for (let index = 0; index < answerTags.length; index++) {
-    if (index === correctIndex) {
-      answerTags[index].style.background = "green";
-    } else {
-      answerTags[index].style.background = "red";
-    }
+    index === correctIndex
+      ? (answerTags[index].style.background = "#2ec4b6")
+      : (answerTags[index].style.background = "#ef233c");
     answerTags[index].disabled = true;
   }
 }
 
-function resetAnswerbtns() {
+function resetAnswerBtns() {
   answerTags.forEach((btn) => {
-    btn.style.background = "white";
+    btn.style.background = "#ffffff";
     btn.disabled = false;
   });
 }
@@ -117,7 +123,7 @@ const finishHandler = () => {
 
 function relaodNextQuestion() {
   const questions = reloadFromLocalStorage("questions");
-  resetAnswerbtns();
+  resetAnswerBtns();
   if (questionNumber === 21) {
     finishHandler();
     return;
@@ -126,23 +132,17 @@ function relaodNextQuestion() {
   score = reloadFromLocalStorage("score");
   scoreTag.textContent = score;
   questionTag.innerHTML = questions[questionNumber - 1].question;
-  let correctAnswerBtnIndex = chooseRandomBtn();
+  let correctAnswerBtnIndex = questions[questionNumber - 1].correctIndex;
   saveToLocalStorage("correctAns", correctAnswerBtnIndex);
-  let incorrectIndex = 0;
   for (let index = 0; index < answerTags.length; index++) {
-    if (index === correctAnswerBtnIndex) {
-      answerTags[index].innerHTML =
-        questions[questionNumber - 1].correct_answer;
-    } else {
-      answerTags[index].innerHTML =
-        questions[questionNumber - 1].incorrect_answers[incorrectIndex++];
-    }
+    answerTags[index].innerHTML = questions[questionNumber - 1].answers[index];
   }
   answerTags.forEach((answerTag) => {
     answerTag.addEventListener("click", chooseAnswerHandler);
   });
   questionNumber++;
 }
+
 const saveHandler = () => {
   let scoresList = reloadFromLocalStorage("scoresList");
   console.log(scoresList);
@@ -167,35 +167,48 @@ const saveHandler = () => {
     scoresList.push(newScore);
     saveToLocalStorage("scoresList", scoresList);
   }
+  window.location.href = "scores.html";
 };
 
 export {
   chooseLevelHandler,
-  chooseRandomBtn,
-  getQuestions,
   saveToLocalStorage,
   reloadFromLocalStorage,
   reloadQuestions,
-  chooseAnswerHandler,
-  resetAnswerbtns,
   relaodNextQuestion,
   saveHandler,
-  quantity,
-  level,
-  apiUrl,
-  nameInput,
-  questionNumberTag,
-  scoreTag,
   levelBtns,
-  questionTag,
-  answerTag1,
-  answerTag2,
-  answerTag3,
-  answerTag4,
-  answerTags,
   nextBtn,
   saveBtn,
   finalScore,
-  questionNumber,
-  score,
 };
+// export {
+//   formatQuestions,
+//   chooseLevelHandler,
+//   chooseRandomBtn,
+//   getQuestions,
+//   saveToLocalStorage,
+//   reloadFromLocalStorage,
+//   reloadQuestions,
+//   chooseAnswerHandler,
+//   relaodNextQuestion,
+//   saveHandler,
+//   quantity,
+//   level,
+//   apiUrl,
+//   nameInput,
+//   questionNumberTag,
+//   scoreTag,
+//   levelBtns,
+//   questionTag,
+//   answerTag1,
+//   answerTag2,
+//   answerTag3,
+//   answerTag4,
+//   answerTags,
+//   nextBtn,
+//   saveBtn,
+//   finalScore,
+//   questionNumber,
+//   score,
+// };

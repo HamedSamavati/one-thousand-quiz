@@ -1,0 +1,25 @@
+@keyframes anima {
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#loader {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 20px solid #2dc653;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  animation: 1.5s anima linear infinite;
+  position: fixed;
+  top: 150px;
+}
+
+#game-main {
+  display: none;
+}

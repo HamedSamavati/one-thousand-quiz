@@ -4,26 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/game.css" />
     <link rel="shortcut icon" href="./images/logo.png" />
     <title>One Thousand Quizes</title>
   </head>
   <body>
-    <header id="game-header">
-      <h1 id="question-h">Question No: <span>x</span></h1>
-      <h1 id="score-board">Score: <span>x</span></h1>
-    </header>
+    <div id="loader"></div>
+
     <main id="game-main">
+      <header id="game-header">
+        <h1 id="question-h">Question No: <span>x</span></h1>
+        <h1 id="score-board">Score: <span>x</span></h1>
+      </header>
       <section class="question-options">
         <div id="game-over">
           <p>GAME OVER</p>
           <p id="game-over-info"></p>
           <a href="./end.html">Scores</a>
         </div>
-        <h2>Question?</h2>
-        <button id="answer-1" class="options">option1</button>
-        <button id="answer-2" class="options">option2</button>
-        <button id="answer-3" class="options">option3</button>
-        <button id="answer-4" class="options">option4</button>
+        <h2></h2>
+        <button id="answer-1" classons"></button>
+        <button id="answer-2" classons"></button>
+        <button id="answer-3" classons"></button>
+        <button id="answer-4" class="options"></button>
       </section>
       <section id="finish-next">
         <a id="finish" href="end.html">Finish</a>
