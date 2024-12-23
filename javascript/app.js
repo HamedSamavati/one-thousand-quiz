@@ -9,7 +9,6 @@ function startHome() {
   let difficulty = reloadFromLocalStorage("difficulty");
   if (difficulty === null) {
     saveToLocalStorage("difficulty", "medium");
-    console.log(reloadFromLocalStorage("difficulty"));
   }
 }
 startHome();

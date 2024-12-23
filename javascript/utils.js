@@ -66,7 +66,6 @@ async function getQuestions() {
 }
 
 const formatQuestions = (questionData) => {
-  console.log(questionData);
   let formated = questionData.map((item) => {
     const questionObj = { question: item.question };
     let answers = [...item.incorrect_answers];
@@ -76,7 +75,6 @@ const formatQuestions = (questionData) => {
     questionObj.correctIndex = CorrectAnswerIndex;
     return questionObj;
   });
-  console.log(formated);
   return formated;
 };
 
@@ -118,17 +116,18 @@ const finishHandler = () => {
   const text = `You score is ${userScore}`;
   gameOverInfo.innerHTML = text;
   gameOver.style.visibility = "visible";
-  console.log(gameOver);
 };
 
 function showQuestion() {
   const questions = reloadFromLocalStorage("questions");
-  questionTag.innerHTML = questions[questionNumber - 1].question;
-  let correctAnswerBtnIndex = questions[questionNumber - 1].correctIndex;
-  saveToLocalStorage("correctAns", correctAnswerBtnIndex);
-  for (let index = 0; index < answerTags.length; index++) {
-    answerTags[index].innerHTML = questions[questionNumber - 1].answers[index];
-  }
+  console.log(questions);
+  const { question, answers, correctIndex } = questions[questionNumber - 1];
+  console.log(question, answers, correctIndex);
+  saveToLocalStorage("correctAns", correctIndex);
+  questionTag.innerHTML = question;
+  answerTags.forEach((answerTag, index) => {
+    answerTag.innerHTML = answers[index];
+  });
 }
 
 function relaodNextQuestion() {
@@ -149,12 +148,10 @@ function relaodNextQuestion() {
 
 const saveHandler = () => {
   let scoresList = reloadFromLocalStorage("scoresList");
-  console.log(scoresList);
   if (scoresList === null) {
     scoresList = [];
     saveToLocalStorage("scoresList", scoresList);
   }
-  console.log(scoresList);
   let newScore = {};
   const name = nameInput.value;
   nameInput.value = "";
@@ -186,33 +183,3 @@ export {
   saveBtn,
   finalScore,
 };
-// export {
-//   formatQuestions,
-//   chooseLevelHandler,
-//   chooseRandomBtn,
-//   getQuestions,
-//   saveToLocalStorage,
-//   reloadFromLocalStorage,
-//   reloadQuestions,
-//   chooseAnswerHandler,
-//   relaodNextQuestion,
-//   saveHandler,
-//   quantity,
-//   level,
-//   apiUrl,
-//   nameInput,
-//   questionNumberTag,
-//   scoreTag,
-//   levelBtns,
-//   questionTag,
-//   answerTag1,
-//   answerTag2,
-//   answerTag3,
-//   answerTag4,
-//   answerTags,
-//   nextBtn,
-//   saveBtn,
-//   finalScore,
-//   questionNumber,
-//   score,
-// };

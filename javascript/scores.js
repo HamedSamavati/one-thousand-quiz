@@ -19,6 +19,5 @@ const reloadScoresRecord = () => {
     id++;
   });
   usersRecords.innerHTML = htmlCode;
-  console.log(usersRecords);
 };
 reloadScoresRecord();
