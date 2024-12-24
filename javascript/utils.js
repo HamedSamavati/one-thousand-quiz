@@ -1,16 +1,12 @@
 const quantity = 20;
 const level = reloadFromLocalStorage("difficulty");
-const apiUrl = `https://opentdb.com/api.php?amount=${quantity}&category=18&difficulty=${level}&type=multiple`;
+const apiUrl = `https://opentdb.com/api.php?amount=${quantity}&category=9&difficulty=${level}&type=multiple`;
 const nameInput = document.getElementById("name-input");
 const levelBtns = document.querySelectorAll(".level-btn");
 const questionNumberTag = document.querySelector("#question-h span");
 const scoreTag = document.querySelector("#score-board span");
 const questionTag = document.querySelector("#game-main h2");
-const answerTag1 = document.getElementById("answer-1");
-const answerTag2 = document.getElementById("answer-2");
-const answerTag3 = document.getElementById("answer-3");
-const answerTag4 = document.getElementById("answer-4");
-const answerTags = [answerTag1, answerTag2, answerTag3, answerTag4];
+const answerTags = document.querySelectorAll(".answer");
 const nextBtn = document.getElementById("next");
 const saveBtn = document.getElementById("saveBtn");
 const finalScore = document.querySelector("#final-score");
