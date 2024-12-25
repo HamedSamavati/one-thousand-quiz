@@ -8,19 +8,15 @@
     <link rel="stylesheet" href="./style/difficulty.css" />
     <link rel="shortcut icon" href="./images/logo.png" />
   </head>
-  <body>
-    <header>
-      <h1>Select difficulty level</h1>
+  <body class="body">
+    <header class="header">
+      <h1 class="header__text">Select difficulty level</h1>
     </header>
-    <main>
-      <div id="levels-div">
-        <button class="level-btn">Easy</button>
-        <button class="level-btn active">Medium</button>
-        <button class="level-btn">Hard</button>
-      </div>
-      <div class="go-home-div">
-        <a class="go-home" href="./index.html">Go Home</a>
-      </div>
+    <main class="main__level container">
+      <button class="button--dark button level-btn">Easy</button>
+      <button class="button--dark button level-btn active">Medium</button>
+      <button class="button--dark button level-btn">Hard</button>
+      <a class="button--transparent button" href="./index.html">Go Home</a>
     </main>
     <script src="./javascript/utils.js" type="module"></script>
     <script src="./javascript/difficulty.js" type="module"></script>

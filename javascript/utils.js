@@ -12,9 +12,10 @@ const saveBtn = document.getElementById("saveBtn");
 const finalScore = document.querySelector("#final-score");
 const gameOver = document.getElementById("game-over");
 const gameOverInfo = document.getElementById("game-over-info");
+const BONUS = 10;
 
 let questionNumber = 1;
-var score = 0;
+let score = 0;
 
 function chooseLevelHandler(event) {
   const targetText = event.target.textContent;
@@ -84,25 +85,29 @@ async function reloadQuestions() {
   }
 }
 
-function chooseAnswerHandler(event) {
+function chooseAnswerHandler(event, index) {
   const correctIndex = reloadFromLocalStorage("correctAns");
-  if (answerTags[correctIndex] === event.target) {
+  const isCorrect = index === correctIndex ? true : false;
+  if (isCorrect) {
+    event.target.classList.add("correct");
     score = reloadFromLocalStorage("score");
-    score += 10;
+    score += BONUS;
     saveToLocalStorage("score", score);
     scoreTag.textContent = score;
+  } else {
+    event.target.classList.add("incorrect");
+    answerTags[correctIndex].classList.add("correct");
   }
-  for (let index = 0; index < answerTags.length; index++) {
-    index === correctIndex
-      ? (answerTags[index].style.background = "#2ec4b6")
-      : (answerTags[index].style.background = "#ef233c");
-    answerTags[index].disabled = true;
-  }
+  answerTags.forEach((btn) => (btn.disabled = true));
 }
 
 function resetAnswerBtns() {
   answerTags.forEach((btn) => {
-    btn.style.background = "#ffffff";
+    if (btn.classList.contains("correct")) {
+      btn.classList.toggle("correct");
+    } else if (btn.classList.contains("incorrect")) {
+      btn.classList.toggle("incorrect");
+    }
     btn.disabled = false;
   });
 }
@@ -116,9 +121,7 @@ const finishHandler = () => {
 
 function showQuestion() {
   const questions = reloadFromLocalStorage("questions");
-  console.log(questions);
   const { question, answers, correctIndex } = questions[questionNumber - 1];
-  console.log(question, answers, correctIndex);
   saveToLocalStorage("correctAns", correctIndex);
   questionTag.innerHTML = question;
   answerTags.forEach((answerTag, index) => {
@@ -128,7 +131,8 @@ function showQuestion() {
 
 function relaodNextQuestion() {
   resetAnswerBtns();
-  if (questionNumber === 21) {
+  const questions = reloadFromLocalStorage("questions");
+  if (questionNumber > questions.length) {
     finishHandler();
     return;
   }
@@ -136,9 +140,6 @@ function relaodNextQuestion() {
   score = reloadFromLocalStorage("score");
   scoreTag.textContent = score;
   showQuestion();
-  answerTags.forEach((answerTag) => {
-    answerTag.addEventListener("click", chooseAnswerHandler);
-  });
   questionNumber++;
 }
 
@@ -174,8 +175,11 @@ export {
   reloadQuestions,
   relaodNextQuestion,
   saveHandler,
+  chooseAnswerHandler,
   levelBtns,
   nextBtn,
   saveBtn,
+  scoreTag,
   finalScore,
+  answerTags,
 };

@@ -9,7 +9,7 @@ const reloadScoresRecord = () => {
   recordsList.forEach((record) => {
     htmlCode += `
         <div class="user-score">
-          <div>
+          <div class="user">
             <p id="user-id" class="user-id">${id}</p>
             <p id="user-name" class="user-name">${record.userName}</p>
           </div>

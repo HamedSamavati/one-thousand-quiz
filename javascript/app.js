@@ -1,4 +1,8 @@
-import { saveToLocalStorage, reloadFromLocalStorage } from "./utils.js";
+import {
+  saveToLocalStorage,
+  reloadFromLocalStorage,
+  reloadQuestions,
+} from "./utils.js";
 
 function startHome() {
   let score = reloadFromLocalStorage("score");
@@ -10,5 +14,6 @@ function startHome() {
   if (difficulty === null) {
     saveToLocalStorage("difficulty", "medium");
   }
+  reloadQuestions();
 }
 startHome();

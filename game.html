@@ -8,29 +8,34 @@
     <link rel="shortcut icon" href="./images/logo.png" />
     <title>One Thousand Quizes</title>
   </head>
-  <body>
+  <body class="body">
     <div id="loader"></div>
-
-    <main id="game-main">
-      <header id="game-header">
-        <h1 id="question-h">Question No: <span>x</span></h1>
-        <h1 id="score-board">Score: <span>x</span></h1>
+    <main class="game" id="game-main">
+      <header class="game__header" id="game-header">
+        <h1 class="game__question__header" id="question-h">
+          Question No: <span class="game__header__digits">x</span>
+        </h1>
+        <h1 class="game__score__header" id="score-board">
+          Score: <span class="game__header__digits">x</span>
+        </h1>
       </header>
       <section class="question-options">
-        <div id="game-over">
+        <div class="game-over" id="game-over">
           <p>GAME OVER</p>
           <p id="game-over-info"></p>
-          <a href="./end.html">Scores</a>
+          <a class="button--dark game-over__button" href="./end.html">Scores</a>
         </div>
-        <h2></h2>
-        <button class="answer"></button>
-        <button class="answer"></button>
-        <button class="answer"></button>
-        <button class="answer"></button>
+        <h2 class="game__question-tag"></h2>
+        <button class="button--dark button answer"></button>
+        <button class="button--dark button answer"></button>
+        <button class="button--dark button answer"></button>
+        <button class="button--dark button answer"></button>
       </section>
       <section id="finish-next">
-        <a id="finish" href="end.html">Finish</a>
-        <button id="next">Next</button>
+        <a class="button--transparent button finish" id="finish" href="end.html"
+          >Finish</a
+        >
+        <button class="button--transparent button next" id="next">Next</button>
       </section>
     </main>
     <script src="./javascript/utils.js" type="module"></script>
