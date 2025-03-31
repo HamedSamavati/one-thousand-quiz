@@ -154,8 +154,8 @@ const saveHandler = () => {
   nameInput.value = "";
   score = reloadFromLocalStorage("score");
   saveToLocalStorage("score", 0);
-  if (name === null) {
-    alert("please Enter a name to save your score!");
+  if (!name || !score) {
+    alert("Invalid username or score!");
   } else {
     newScore = {
       userName: name,
@@ -163,6 +163,9 @@ const saveHandler = () => {
     };
     const scoresList = reloadFromLocalStorage("scoresList");
     scoresList.push(newScore);
+    scoresList.sort((a, b) => b.userScore - a.userScore);
+    scoresList.splice(10);
+    console.log(scoresList);
     saveToLocalStorage("scoresList", scoresList);
   }
   window.location.href = "scores.html";

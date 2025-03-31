@@ -6,14 +6,12 @@ import {
 
 function startHome() {
   let score = reloadFromLocalStorage("score");
-  if (score === null || score !== 0) {
+  if (score) {
     saveToLocalStorage("score", 0);
     score = reloadFromLocalStorage("score");
   }
   let difficulty = reloadFromLocalStorage("difficulty");
-  if (difficulty === null) {
-    saveToLocalStorage("difficulty", "medium");
-  }
+  saveToLocalStorage("difficulty", difficulty || "medium");
   reloadQuestions();
 }
 startHome();

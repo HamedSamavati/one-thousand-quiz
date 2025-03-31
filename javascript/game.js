@@ -8,6 +8,7 @@ import {
   saveToLocalStorage,
   scoreTag,
 } from "./utils.js";
+
 const gameMain = document.getElementById("game-main");
 const loader = document.getElementById("loader");
 const playAgain = document.getElementById("play-again");
