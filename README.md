@@ -31,13 +31,13 @@ A fun and interactive quiz game built with **HTML**, **CSS**, and **JavaScript**
 - **CSS3** – layout and responsive styling
 - **JavaScript (ES6)** – dynamic functionality, DOM manipulation
 - **Open Trivia Database API** – real-time quiz data
-- _(No frameworks or libraries used – built from scratch for learning purposes)_
+- _(No frameworks or libraries used – built from scratch)_
 
 ---
 
 ## 📸 Screenshots
 
-![One Thousand Quizzes App Preview](https://samavati.ca/one-thausand-quiz/screenshot.png)
+![One Thousand Quizzes App Preview](https://samavati.ca/images/Quiz-game.jpg)
 
 > Includes: Homepage • Difficulty Selector • Quiz Interface • Game Over Screen
 
@@ -47,10 +47,34 @@ A fun and interactive quiz game built with **HTML**, **CSS**, and **JavaScript**
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/one-thousand-quiz.git
+git clone https://github.com/HamedSamavati/one-thousand-quiz.git
 
 # Navigate to project directory
 cd one-thousand-quiz
 
 # Open index.html in your browser
 ```
+
+> You can optionally [sign up for an API key at Open Trivia DB](https://opentdb.com/api_config.php) if you wish to customize the number or category of questions.
+
+---
+
+## 📌 Future Improvements
+
+- Add **category selection** (e.g., History, Science, Entertainment)
+- Include a **countdown timer** per question
+- Store **high scores** using `localStorage`
+- Add **dark mode toggle**
+
+---
+
+## 📜 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 🙋‍♂️ Author
+
+**Hamed Samavati**  
+👨‍💻 [Portfolio](https://samavati.ca) • [LinkedIn](https://www.linkedin.com/in/hamed-samavati/) • [GitHub](https://github.com/HamedSamavati/)
